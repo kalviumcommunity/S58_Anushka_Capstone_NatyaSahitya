@@ -1,9 +1,11 @@
 
 # NatyaSahitya
 
-## The name of my project is NatyaSahitya
+## The name of my project is NatyaSahitya.
+
 
 ### This is a website which is having different types of classical dance forms in India.
+
 
 #### Here are some key features of my Capstone project:-
 
@@ -13,6 +15,7 @@
 - User can only access to the Theory and Practical part when they are Logged In.
 - On some theory parts you can only access by taking premium. 
 - User can post their videos on the website.
+
 
 **My plan for next 5 days are:**
 
