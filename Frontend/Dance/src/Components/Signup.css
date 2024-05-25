@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.sign-boxes{
+    background-color: #B6B7C5;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+.box1{
+    /* border: 2px solid red; */
+    width: 140vh;
+    margin: auto;
+}
+.box2{
+    /* border: 2px solid black; */
+    width: 100vh;
+    background-image: url('../assets/Signpage-img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.create-acc{
+    border: 2px solid yellow;
+    width: 80%;
+    height: 70vh;
+    margin-left: 11%;
+    background-color: #848CE3;
+}
+.section2{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+.section2 input{
+    padding: 5px;
+    margin: 5px;
+}
+form p{
+    color: red;
+}
