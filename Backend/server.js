@@ -21,6 +21,7 @@ app.get('/ping',(req,res) => {
 
 app.post('/SignUP', async(req,res)=>{
     const {username, password, Email,phoneno} = req.body;
+    console.log(req.body)
 
     if (!username || !password || !Email || !phoneno) {
         return res.status(400).json({ message: 'All fields are required' });
@@ -37,25 +38,25 @@ app.post('/SignUP', async(req,res)=>{
 
     try{
         const newUser = new userModel({username, password, Email, phoneno}); 
-        await newUser.save();
-        res.status(201).json({ message: req.body, user: newUser });
+        await newUser.save()
+        res.status(201).json({ message: 'Registered successfully', user: newUser });
     } catch(error){
-        res.status(500).json({ message: 'Error registering user', error: error.message });
+        res.status(500).json({ message: 'Error:', error: error.message });
     }
 })
 
 app.listen(port,async() => { 
-  try {
-    console.log(connection)
-    await connection;
-    console.log("Connected to DB successfully");
-    
-  } catch (error) {
-     console.log("Error connecting to DB");
-     console.log(error);
-  }
-
-  console.log(`Server is listening on port ${port}`);
-
-
-})
+    try {
+      console.log(connection)
+      await connection;
+      console.log("Connected to DB successfully");
+      
+    } catch (error) {
+       console.log("Error connecting to DB");
+       console.log(error);
+    }
+  
+    console.log(`Server is listening on port ${port}`);
+  
+  
+  })

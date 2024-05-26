@@ -5,6 +5,6 @@ const userSchema=mongoose.Schema({
     Email: String,
     phoneno: Number
 })
-const userModel = mongoose.model("user", userSchema)
+const userModel = mongoose.model("usersDB", userSchema)
 
 module.exports={ userModel }

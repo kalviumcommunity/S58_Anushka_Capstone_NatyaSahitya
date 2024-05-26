@@ -33,12 +33,12 @@ const Signup = () => {
       field.Email.includes("@")
     ) {
       setValidate(true);
-      navigate("/")
+      
     } 
     axios.post('http://localhost:8080/SignUp', field)
     .then((res)=>{
-      console.log(res.field)
-      
+      console.log(res)
+      navigate("/")
     })
     .catch(error=>{
       console.log("error:",error)
