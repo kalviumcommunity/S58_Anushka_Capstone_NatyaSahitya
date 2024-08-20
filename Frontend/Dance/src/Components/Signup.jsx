@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -89,7 +90,15 @@ const Signup = () => {
           </div>
         </div>
         <div className='box2'>
-          
+          <div className='upper-box'>
+            <div className='welcome'>
+              <h1>Welcome Back</h1>
+              <Link to={"/Login"}>
+                <button>Log In</button>
+              </Link>
+              
+            </div>
+          </div>
         </div>
       </div>
     </>
