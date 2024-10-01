@@ -16,7 +16,7 @@
     margin: auto;
 }
 .create-acc{
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
     width: 80%;
     height: 70vh;
     margin-left: 11%;
@@ -48,7 +48,7 @@ form p{
     height: 100vh;
 }
 .welcome{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 87vh;
     height: 100vh;
     display: flex;

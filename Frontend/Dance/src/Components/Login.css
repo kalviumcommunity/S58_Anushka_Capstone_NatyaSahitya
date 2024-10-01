@@ -15,7 +15,7 @@
     align-items: center;
 }
 .log-box{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     height: 60%;
     width: 45%;
     margin-left: 25%;
