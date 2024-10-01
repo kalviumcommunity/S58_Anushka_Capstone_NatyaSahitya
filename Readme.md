@@ -24,3 +24,5 @@
 -> Day3 - Initialize my vite react app.
 -> Day4 - Create frontend.
 -> Day5 - Start making the routes.
+
+*Frontend Deployed Link:-*  https://stunning-travesseiro-0eabeb.netlify.app/

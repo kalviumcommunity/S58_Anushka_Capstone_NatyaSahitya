@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -13,13 +14,6 @@
     /* border: 2px solid red; */
     width: 140vh;
     margin: auto;
-}
-.box2{
-    /* border: 2px solid black; */
-    width: 100vh;
-    background-image: url('../assets/Signpage-img.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .create-acc{
     border: 2px solid yellow;
@@ -39,4 +33,39 @@
 }
 form p{
     color: red;
+}
+
+.box2{
+    /* border: 2px solid black; */
+    width: 100vh;
+    background-image: url('../assets/Signpage-img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.upper-box{
+    background-color: rgba(255, 255, 255, 0.166);
+    
+    height: 100vh;
+}
+.welcome{
+    border: 2px solid red;
+    width: 87vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.welcome button{
+    width: 180%;
+    height: 60px;
+    margin-top: 20px;
+    font-size: 30px;
+    font-family: "Jacques Francois Shadow", serif;
+}
+.welcome h1{
+    font-size: 60px;
+    color: white;
+    font-family: "Jacques Francois Shadow", serif;
+    font-weight: 100;
 }
