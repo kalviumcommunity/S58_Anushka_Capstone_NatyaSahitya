@@ -170,7 +170,7 @@ function Kathak() {
         <div className='K-footer'>
           <div className='F-box1'>
             <div>
-            <p>Contact Us: 7221085736</p>
+            <p>Contact Us: 72210.....</p>
             </div>
             <div className='share'>
               <div>Share: </div>

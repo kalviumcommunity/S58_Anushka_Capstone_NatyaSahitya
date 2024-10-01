@@ -177,13 +177,13 @@
     margin-left: 12px;
 }
 .K-theory{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width:  100%;
     height: 60%;
     background-image: linear-gradient(to bottom, #70738A, #1E1E24);
 }
 .K-boxes{
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
     width: 50%;
     height: 100%;
     display: flex;
@@ -192,7 +192,7 @@
     align-items: center;
 }
 .chapters{
-    border: 2px solid white;
+    /* border: 2px solid white; */
     width: 50%;
     height: 15%;
     margin: 10px;
