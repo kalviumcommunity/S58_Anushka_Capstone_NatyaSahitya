@@ -1,107 +1,132 @@
 import React, { useState } from 'react';
-import './Signup.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './Signup.css';
 
 const Signup = () => {
-
-  const [field, setField] = useState({
-    username: "",
-    password: "",
-    Email: "",
-    phoneno: ""
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
   });
-
-  const [submitted, setSubmit] = useState(false);
-  const [validate, setValidate] = useState(false);
-  const navigate = useNavigate();
-
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmit(true);
-    console.log(field);
-
-    
-    if (
-      field.username !== "" &&
-      field.Email !== "" &&
-      field.password !== "" &&
-      field.phoneno !== "" &&
-      field.password.length >= 5 &&
-      field.password.includes("@") &&
-      field.phoneno.length === 10 &&
-      field.Email.includes("@")
-    ) {
-      setValidate(true);
-      
-    } 
-    axios.post('http://localhost:8080/SignUp', field)
-    .then((res)=>{
-      console.log(res)
-      navigate("/")
-    })
-    .catch(error=>{
-      console.log("error:",error)
-    })
+    // Handle signup logic here
+    console.log('Signup attempt with:', formData);
   };
-
+  
   return (
-    <>
-      <div className='sign-boxes'>
-        <div className='box1'>
-          <div className='create-acc'>
-            <form onSubmit={handleSubmit}>
-              <div>
-                {validate && <h3>Registration Successful !!</h3>}
-              </div>
-              <div className='section1'>
-                <h2>Create your account</h2>
-              </div>
-              <div className='section2'>
-                <input
-                  value={field.username} type="text" placeholder='Enter Username' onChange={(e) => setField({ ...field, username: e.target.value })}
-                />
-                {submitted && field.username === "" && <p>Enter your Username.</p>}
-
-                <input
-                  value={field.password} type="password" placeholder='Enter Password' onChange={(e) => setField({ ...field, password: e.target.value })}
-                />
-                {submitted && field.password === "" && <p>Enter your Password.</p>}
-                {submitted && field.password.length < 5 && field.password !== "" && <p>Password should be at least 5 characters long.</p>}
-                {submitted && !field.password.includes("@") && field.password !== "" && <p>Password should include "@".</p>}
-
-                <input
-                  value={field.Email} type="text" placeholder='Enter E-mail' onChange={(e) => setField({ ...field, Email: e.target.value })}
-                />
-                {submitted && field.Email === "" && <p>Enter your E-mail.</p>}
-                {submitted && !field.Email.includes("@") && field.Email !== "" && <p>Enter a valid E-mail.</p>}
-
-                <input
-                  value={field.phoneno} type="text" placeholder='Enter Phone number' onChange={(e) => setField({ ...field, phoneno: e.target.value })}
-                />
-                {submitted && field.phoneno === "" && <p>Enter your Phone number.</p>}
-                {submitted && field.phoneno.length !== 10 && field.phoneno !== "" && <p>Enter a valid 10-digit Phone number.</p>}
-              </div>
-              <div className='submit-btn'>
-                <button type='submit'>Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div className='box2'>
-          <div className='upper-box'>
-            <div className='welcome'>
-              <h1>Welcome Back</h1>
-              <Link to={"/Login"}>
-                <button>Log In</button>
-              </Link>
-              
+    <div className="signup-container">
+      <div className="signup-form-container">
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <div className="signup-decoration-1"></div>
+          <div className="signup-decoration-2"></div>
+          
+          <h2 className="signup-form-title">Create Account</h2>
+          
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="firstName" className="form-label">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                className="form-input"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="lastName" className="form-label">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                className="form-input"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
+          
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="form-input"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="form-input"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              className="form-input"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          
+          <div className="terms-checkbox">
+            <input type="checkbox" id="terms" required />
+            <label htmlFor="terms">
+              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+          
+          <button type="submit" className="signup-button">
+            Create Account
+          </button>
+          
+          <div className="signup-links">
+            <p>Already have an account? <Link to="/Login">Login</Link></p>
+          </div>
+        </form>
+      </div>
+      
+      <div className="signup-image">
+        <div className="signup-image-content">
+          <h2 className="signup-image-title">Join Our Community</h2>
+          <p className="signup-image-subtitle">
+            Discover the beauty and richness of Indian classical dance forms through our comprehensive resources.
+          </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
