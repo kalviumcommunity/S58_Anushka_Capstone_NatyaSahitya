@@ -1,71 +1,252 @@
-@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.sign-boxes{
-    background-color: #B6B7C5;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-}
-.box1{
-    /* border: 2px solid red; */
-    width: 140vh;
-    margin: auto;
-}
-.create-acc{
-    /* border: 2px solid yellow; */
-    width: 80%;
-    height: 70vh;
-    margin-left: 11%;
-    background-color: #848CE3;
-}
-.section2{
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-}
-.section2 input{
-    padding: 5px;
-    margin: 5px;
-}
-form p{
-    color: red;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.box2{
-    /* border: 2px solid black; */
-    width: 100vh;
-    background-image: url('../assets/Signpage-img.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+.signup-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
-.upper-box{
-    background-color: rgba(255, 255, 255, 0.166);
-    
-    height: 100vh;
+
+.signup-form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  padding: 2rem;
 }
-.welcome{
-    /* border: 2px solid red; */
-    width: 87vh;
-    height: 100vh;
-    display: flex;
+
+.signup-form {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.signup-form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.signup-form-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #D4AF37;
+}
+
+.signup-image {
+  flex: 1;
+  background: linear-gradient(45deg, #5057A7 0%, #9C2C2C 100%);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-image-content {
+  text-align: center;
+  color: white;
+  max-width: 80%;
+  z-index: 2;
+}
+
+.signup-image-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #D4AF37;
+}
+
+.signup-image-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #333333;
+  background-color: #FFFFFF;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+  outline: none;
+}
+
+.signup-decoration-1 {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 100px;
+  height: 100px;
+  opacity: 0.1;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0) 70%);
+  background-size: contain;
+}
+
+.signup-decoration-2 {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 80px;
+  height: 80px;
+  opacity: 0.1;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0) 70%);
+  background-size: contain;
+}
+
+.signup-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333333;
+  background-color: #D4AF37;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.signup-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.signup-button:hover::before {
+  left: 0;
+}
+
+.signup-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.signup-links {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+}
+
+.signup-links a {
+  color: #D4AF37;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.signup-links a:hover {
+  text-decoration: underline;
+}
+
+.terms-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.terms-checkbox input[type="checkbox"] {
+  margin-top: 0.2rem;
+  accent-color: #D4AF37;
+}
+
+.terms-checkbox label {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-family: 'Poppins', sans-serif;
+}
+
+.terms-checkbox a {
+  color: #D4AF37;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.terms-checkbox a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .signup-container {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.welcome button{
-    width: 180%;
-    height: 60px;
-    margin-top: 20px;
-    font-size: 30px;
-    font-family: "Jacques Francois Shadow", serif;
-}
-.welcome h1{
-    font-size: 60px;
-    color: white;
-    font-family: "Jacques Francois Shadow", serif;
-    font-weight: 100;
+  }
+  
+  .signup-image {
+    height: 30vh;
+    min-height: 200px;
+  }
+  
+  .signup-form-container {
+    padding: 1rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }

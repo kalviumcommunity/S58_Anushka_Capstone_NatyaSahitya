@@ -28,7 +28,7 @@
 }
 .H-box2{
     width: 70%;
-    background-image: url('../assets/kathakbg-img.png');
+    background: linear-gradient(135deg, #9C2C2C 0%, #5057A7 100%); /* Replace image with gradient */
 }
 .K-content{
     /* border: 2px solid yellow; */
@@ -197,4 +197,9 @@
     height: 15%;
     margin: 10px;
     border-radius: 20px;
+}
+.kathak-container {
+  background: linear-gradient(135deg, #9C2C2C 0%, #5057A7 100%); /* Replace image with gradient */
+  min-height: 100vh;
+  padding-top: 80px;
 }
