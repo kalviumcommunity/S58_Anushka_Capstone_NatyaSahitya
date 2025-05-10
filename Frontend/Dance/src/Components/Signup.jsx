@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -11,18 +12,70 @@ const Signup = () => {
     confirmPassword: ''
   });
   
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
     });
+    // Clear error when user starts typing
+    if (error) setError('');
   };
   
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return false;
+    }
+    return true;
+  };
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle signup logic here
-    console.log('Signup attempt with:', formData);
+    
+    if (!validateForm()) return;
+    
+    setLoading(true);
+    setError('');
+    
+    try {
+      const response = await fetch('http://localhost:8080/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.email,
+          password: formData.password,
+          email: formData.email,
+          phoneno: '1234567890'
+        }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Signup failed');
+      }
+      
+      // Signup successful
+      console.log('Signup successful:', data);
+      
+      // Redirect to login page
+      navigate('/Login');
+      
+    } catch (err) {
+      setError(err.message || 'An error occurred during signup');
+    } finally {
+      setLoading(false);
+    }
   };
   
   return (
@@ -33,6 +86,8 @@ const Signup = () => {
           <div className="signup-decoration-2"></div>
           
           <h2 className="signup-form-title">Create Account</h2>
+          
+          {error && <div className="error-message">{error}</div>}
           
           <div className="form-row">
             <div className="form-group">
@@ -45,6 +100,7 @@ const Signup = () => {
                 value={formData.firstName}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
             
@@ -58,6 +114,7 @@ const Signup = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
           </div>
@@ -72,6 +129,7 @@ const Signup = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           
@@ -85,6 +143,7 @@ const Signup = () => {
               value={formData.password}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           
@@ -98,18 +157,23 @@ const Signup = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
           
           <div className="terms-checkbox">
-            <input type="checkbox" id="terms" required />
+            <input type="checkbox" id="terms" required disabled={loading} />
             <label htmlFor="terms">
               I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
             </label>
           </div>
           
-          <button type="submit" className="signup-button">
-            Create Account
+          <button 
+            type="submit" 
+            className={`signup-button ${loading ? 'loading' : ''}`}
+            disabled={loading}
+          >
+            {loading ? 'Creating Account...' : 'Create Account'}
           </button>
           
           <div className="signup-links">
