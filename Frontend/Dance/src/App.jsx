@@ -13,99 +13,84 @@ import KathakPage from './Components/KathakPage'
 import BharatanatyamPage from './Components/BharatanatyamPage'
 import OdissiPage from './Components/OdissiPage'
 import KuchipudiPage from './Components/KuchipudiPage'
+import { AuthProvider } from './context/AuthContext'
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <div className="app-container">
+          <Navbar />
           <Routes>
             <Route path="/" element={<FrontPage />} />
             <Route path="/SignUp" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <Signup />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Login" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <Login />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Kathak" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <KathakPage />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Bharatanatyam" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <BharatanatyamPage />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Odissi" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <OdissiPage />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Kuchipudi" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <KuchipudiPage />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Costume" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <Costume />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Theory" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <Theory />
                 </div>
-                <Footer />
               </>
             } />
             <Route path="/Practical" element={
               <>
-                <Navbar />
                 <div className="page-content">
                   <Practical />
                 </div>
-                <Footer />
               </>
             } />
           </Routes>
+          <Footer />
         </div>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   )
 }
 
