@@ -1,15 +1,65 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const { login } = useAuth();
+    const [formData, setFormData] = useState({
+        username: '',
+        password: ''
+    });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     
-    const handleSubmit = (e) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+        // Clear error when user starts typing
+        if (error) setError('');
+    };
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle login logic here
-        console.log('Login attempt with:', { email, password });
+        setLoading(true);
+        setError('');
+        
+        try {
+            const response = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+            
+            // Login successful
+            console.log('Login successful:', data);
+            
+            // Update auth context with user data
+            login({
+                username: formData.username,
+                // Add any other user data you want to store
+            });
+            
+            // Redirect to home page
+            navigate('/');
+            
+        } catch (err) {
+            setError(err.message || 'An error occurred during login');
+        } finally {
+            setLoading(false);
+        }
     };
     
     return (
@@ -30,15 +80,19 @@ const Login = () => {
                     
                     <h2 className="login-form-title">Login</h2>
                     
+                    {error && <div className="error-message">{error}</div>}
+                    
                     <div className="form-group">
-                        <label htmlFor="email" className="form-label">Email Address</label>
+                        <label htmlFor="username" className="form-label">Email Address</label>
                         <input
                             type="email"
-                            id="email"
+                            id="username"
+                            name="username"
                             className="form-input"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.username}
+                            onChange={handleChange}
                             required
+                            disabled={loading}
                         />
                     </div>
                     
@@ -47,15 +101,21 @@ const Login = () => {
                         <input
                             type="password"
                             id="password"
+                            name="password"
                             className="form-input"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={formData.password}
+                            onChange={handleChange}
                             required
+                            disabled={loading}
                         />
                     </div>
                     
-                    <button type="submit" className="login-button">
-                        Login
+                    <button 
+                        type="submit" 
+                        className={`login-button ${loading ? 'loading' : ''}`}
+                        disabled={loading}
+                    >
+                        {loading ? 'Logging in...' : 'Login'}
                     </button>
                     
                     <div className="login-divider">

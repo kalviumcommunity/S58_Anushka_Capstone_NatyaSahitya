@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isLoggedIn, user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +29,11 @@ const Navbar = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
@@ -71,8 +79,21 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar-auth">
-          <Link to="/Login" className="auth-link login">Login</Link>
-          <Link to="/SignUp" className="auth-link signup">Sign Up</Link>
+          {isLoggedIn ? (
+            <>
+              <span className="auth-link user-welcome">
+                Welcome, {user?.username}
+              </span>
+              <button onClick={handleLogout} className="auth-link logout-button">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/Login" className="auth-link login">Login</Link>
+              <Link to="/SignUp" className="auth-link signup">Sign Up</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
